@@ -8,6 +8,7 @@ This project implements a minimal RTOS scheduler from scratch using ARM Cortex-M
 
 The scheduler supports multiple execution strategies including round-robin scheduling and priority-based task selection for deterministic task execution.
 
+
 ## Features
 
 - Cooperative multitasking scheduler
