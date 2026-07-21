@@ -1,56 +1,141 @@
 # RTOS-Based Task Scheduler on ARM Cortex-M
 
-A cooperative multitasking scheduler implemented in Embedded C on ARM Cortex-M, supporting round-robin and priority-based scheduling with full context switching.
+A lightweight cooperative RTOS scheduler implemented in Embedded C for ARM Cortex-M microcontrollers. The project demonstrates core RTOS concepts including task management, scheduling algorithms, task control blocks, interrupt-driven timing, and low-level context switching.
 
 ## Overview
 
-This project implements a lightweight Real-Time Operating System (RTOS) scheduler from scratch on ARM Cortex-M using CMSIS. It demonstrates core OS internals including task control blocks, context switching, and deterministic real-time task execution.
+This project implements a minimal RTOS scheduler from scratch using ARM Cortex-M architecture and CMSIS. It focuses on understanding the internal working of an RTOS kernel by implementing task creation, task state management, scheduling decisions, and CPU context switching.
+
+The scheduler supports multiple execution strategies including round-robin scheduling and priority-based task selection for deterministic task execution.
 
 ## Features
 
-- Cooperative multitasking with round-robin and priority-based scheduling
-- Task Control Block (TCB) implementation for task state management
-- Context switching using ARM Cortex-M SysTick and PendSV interrupts
-- Deterministic task execution with low scheduling latency
-- Configurable task priorities and time slices
+- Cooperative multitasking scheduler
+- Round-robin task scheduling
+- Priority-based task scheduling
+- Task Control Block (TCB) based task management
+- ARM Cortex-M context switching using assembly
+- SysTick timer-driven scheduler tick generation
+- PendSV exception-based context switching
+- Configurable task priorities
+- Lightweight kernel architecture
 
 ## Technical Details
 
 | Parameter | Details |
 |---|---|
-| **Platform** | ARM Cortex-M (STM32) |
-| **Language** | Embedded C |
-| **Framework** | CMSIS |
-| **Scheduling** | Round-Robin + Priority-Based |
-| **Context Switch** | PendSV Handler |
-| **Timer** | SysTick |
+| Platform | ARM Cortex-M (STM32) |
+| Language | Embedded C |
+| Framework | CMSIS |
+| Scheduling | Round-Robin + Priority-Based |
+| Context Switching | ARM Assembly + PendSV Handler |
+| Timer | SysTick Interrupt |
+| Development Environment | STM32CubeIDE |
+
+## Architecture Overview
+
+The scheduler follows a layered architecture:
+
+```text
+Application Tasks
+        |
+        |
+Task Management Layer
+        |
+        |
+Scheduler Kernel
+        |
+        |
+Context Switching Layer
+        |
+        |
+ARM Cortex-M Hardware
+```
+
+## How It Works
+
+1. Tasks are created and stored using Task Control Blocks (TCBs).
+2. The scheduler maintains task states and selects the next runnable task.
+3. SysTick generates periodic timer interrupts for scheduling decisions.
+4. PendSV performs the context switch by saving the current task context and restoring the next task context.
+5. Execution resumes from the selected task.
+
 
 ## Project Structure
-rtos-task-scheduler-arm/
+
+```text
+cortex-m-rtos-task-scheduler/
+│
 ├── src/
-│   ├── main.c          # Entry point and task definitions
-│   ├── scheduler.c     # Core scheduling logic
-│   ├── tcb.c           # Task Control Block management
-│   └── context_switch.s # ARM assembly context switch
+│   ├── main.c
+│   ├── scheduler.c
+│   ├── tcb.c
+│   └── context_switch.s
+│
 ├── inc/
 │   ├── scheduler.h
 │   └── tcb.h
+│
+├── docs/
+│   └── architecture.md
+│
 └── README.md
+```
+
 
 ## Key Concepts Demonstrated
 
-- **Task Control Blocks (TCB):** Each task maintains its own stack pointer, priority, state, and timing parameters
-- **Context Switching:** Implemented via ARM PendSV exception for minimal interrupt latency
-- **SysTick Timer:** Used for periodic scheduling ticks and task timeout tracking
-- **Priority Scheduling:** Higher priority tasks preempt lower priority ones deterministically
+### Task Control Block (TCB)
+
+Each task is represented using a TCB structure containing task-related information such as:
+
+- Stack pointer
+- Task state
+- Task priority
+- Task execution information
+
+
+### Context Switching
+
+The project implements low-level CPU context switching by saving and restoring processor registers during task transitions.
+
+The context switching mechanism demonstrates understanding of:
+
+- ARM Cortex-M exception handling
+- Stack management
+- Register preservation
+- Low-level assembly programming
+
+### Scheduling Algorithms
+
+The scheduler supports multiple task selection strategies:
+
+- Round-robin scheduling for fair execution among equal priority tasks
+- Priority-based scheduling for selecting higher priority runnable tasks
+
+The scheduling logic is designed to provide predictable task execution behavior.
+
+### Timer-Based Scheduling
+
+The SysTick timer provides periodic scheduler ticks used for task timing and scheduling decisions.
+
 
 ## Tools & Environment
 
 - STM32CubeIDE
 - CMSIS (Cortex Microcontroller Software Interface Standard)
 - ARM GCC Toolchain
-- OpenOCD / JTAG for debugging
+- STM32 Debugging Tools
+
 
 ## Skills Demonstrated
 
-`Embedded C` `ARM Cortex-M` `RTOS` `Context Switching` `Interrupt Handling` `Memory Management` `OS Internals` `STM32` `CMSIS` `Real-Time Systems`
+`Embedded C` | `ARM Cortex-M` | `RTOS Kernel Design` | `Task Scheduling` | `Context Switching` | `Interrupt Handling` | `Assembly Programming` | `CMSIS` | `STM32` | `Real-Time Systems` | `Operating System Internals`
+
+
+## Future Improvements
+
+- Preemptive scheduling support
+- Inter-task communication mechanisms
+- Mutex and semaphore support
+- Dynamic memory management
