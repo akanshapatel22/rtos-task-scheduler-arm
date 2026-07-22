@@ -11,8 +11,7 @@ The scheduler supports multiple execution strategies including round-robin sched
 
 ## Features
 
-- Cooperative multitasking scheduler
-- Round-robin task scheduling
+- Cooperative multitasking scheduler 
 - Priority-based task scheduling
 - Task Control Block (TCB) based task management
 - ARM Cortex-M context switching using assembly
@@ -28,7 +27,7 @@ The scheduler supports multiple execution strategies including round-robin sched
 | Platform | ARM Cortex-M (STM32) |
 | Language | Embedded C |
 | Framework | CMSIS |
-| Scheduling | Round-Robin + Priority-Based |
+| Scheduling |  Priority-Based Task Selection |
 | Context Switching | ARM Assembly + PendSV Handler |
 | Timer | SysTick Interrupt |
 | Development Environment | STM32CubeIDE |
@@ -107,14 +106,11 @@ The context switching mechanism demonstrates understanding of:
 - Register preservation
 - Low-level assembly programming
 
-### Scheduling Algorithms
+### Scheduling Algorithm
 
-The scheduler supports multiple task selection strategies:
+The scheduler selects the next runnable task based on task priority.
 
-- Round-robin scheduling for fair execution among equal priority tasks
-- Priority-based scheduling for selecting higher priority runnable tasks
-
-The scheduling logic is designed to provide predictable task execution behavior.
+Higher priority tasks are selected before lower priority tasks, providing predictable task execution behavior.
 
 ### Timer-Based Scheduling
 
