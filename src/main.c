@@ -37,7 +37,7 @@ int main(void) {
     /* Initialize scheduler */
     scheduler_init();
 
-    /* Register tasks with priorities */
+    /* Create application tasks with different priority levels */
     task_create(task1, PRIORITY_LOW,    STACK_SIZE_DEFAULT);
     task_create(task2, PRIORITY_MEDIUM, STACK_SIZE_DEFAULT);
     task_create(task3, PRIORITY_HIGH,   STACK_SIZE_DEFAULT);
