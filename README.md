@@ -1,6 +1,6 @@
 # RTOS-Based Task Scheduler on ARM Cortex-M
 
-A lightweight cooperative RTOS scheduler implemented in Embedded C for ARM Cortex-M microcontrollers. The project demonstrates core RTOS concepts including task management, scheduling algorithms, task control blocks, interrupt-driven timing, and low-level context switching.
+A lightweight cooperative RTOS scheduler implemented in Embedded C for ARM Cortex-M microcontrollers. The project demonstrates core RTOS concepts including task management, scheduling logic, task control blocks, interrupt-driven timing, and low-level context switching.
 
 ## Overview
 
